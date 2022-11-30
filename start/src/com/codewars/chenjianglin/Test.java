@@ -24,9 +24,7 @@ class Solution{
 public class Test {
 
     public static void main(String[] args) {
-        System.out.println(toCamelCase("the-stealth-warrior").equals("theStealthWarrior"));
-        System.out.println("--");
-        System.out.println(toCamelCase("The_Stealth_Warrior").equals("TheStealthWarrior"));
+
     }
 
     /**
