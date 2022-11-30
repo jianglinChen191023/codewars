@@ -1,11 +1,11 @@
 # codewars
 # 一 算法
-## Convert string to camel case
-> Complete the method/function so that it converts dash/underscore delimited words into camel casing. The first word within the output should be capitalized only if the original word was capitalized (known as Upper Camel Case, also often referred to as Pascal case). The next words should be always capitalized.
+## 将字符串转换为驼峰大小写
+> 完成方法/函数，以便将破折号/下划线分隔的单词转换为驼峰式大小写。仅当原始单词大写时，输出中的第一个单词才应大写（称为 Upper Camel Case，通常也称为 Pascal 大小写）。接下来的单词应该始终大写。
 
-Examples:
-"the-stealth-warrior" gets converted to "theStealthWarrior"
-"The_Stealth_Warrior" gets converted to "TheStealthWarrior"
+示例:
+- `"the-stealth-warrior" gets converted to "theStealthWarrior"`
+- `"The_Stealth_Warrior" gets converted to "TheStealthWarrior"`
 
 ### 第一种解法
 ```java
@@ -42,8 +42,8 @@ public class Test {
 
         return stringBuilder.toString();
     }
-
 }
+
 ```
 
 ### 第二种解法-`steam`
