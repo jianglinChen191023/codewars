@@ -1,9 +1,5 @@
 package com.codewars.chenjianglin;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 /**
  * @author 陈江林
  * @date 2022/12/3 06:29
@@ -12,14 +8,14 @@ public class PrimeDecomp {
 
     public static void main(String[] args) {
         System.out.println(factors(86240).equals("(2**5)(5)(7**2)(11)"));
-        System.out.println(factors(7775460).equals("(2**2)(3**3)(5)(7)(11**2)(17)"));
+//        System.out.println(factors(7775460).equals("(2**2)(3**3)(5)(7)(11**2)(17)"));
     }
 
-    public static String factors(int lst) {
+    public static String factors2(int lst) {
         String result = "";
-        for (int fac = 2; fac <= lst; ++fac) {
+        for (int fac = 2; fac <= lst; fac++) {
             int count;
-            for (count = 0; lst % fac == 0; ++count) {
+            for (count = 0; lst % fac == 0; count++) {
                 lst /= fac;
             }
 
@@ -31,43 +27,29 @@ public class PrimeDecomp {
         return result;
     }
 
-    public static String factors1(int n) {
-        StringBuilder resultStr = new StringBuilder();
-        // 存储所有素数
-        List<Integer> list = new ArrayList();
+    public static String factors(int n) {
+        String resultStr = "";
         // 当前素数
         Integer prime = 2;
 
         // 如果为 1 结束
         while (n != 1) {
             if (n % prime == 0) {
-                // 添加当前素数
-                list.add(prime);
-                // 除以当前素数
-                n /= prime;
+                Integer count = 0;
+                while (n % prime == 0) {
+                    // 除以当前素数
+                    n /= prime;
+                    count++;
+                }
+
+                resultStr += "(" + prime + (count > 1 ? "**" + count : "") + ")";
             } else {
                 // 下一个素数
                 prime = nextPrime(prime);
             }
         }
 
-        // 排列格式： "(p1**n1)(p2**n2)...(pk**nk)"
-        list.stream()
-                // 分组
-                .collect(Collectors.groupingBy(item -> item))
-                // 排序
-                .entrySet().stream().sorted(java.util.Map.Entry.comparingByKey())
-                .forEach(item -> {
-                    Integer key = item.getKey();
-                    int size = item.getValue().size();
-                    if (size > 1) {
-                        resultStr.append("(" + key + "**" + size + ")");
-                    } else {
-                        resultStr.append("(" + key + ")");
-                    }
-                });
-
-        return resultStr.toString();
+        return resultStr;
     }
 
     /**
